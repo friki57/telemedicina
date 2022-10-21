@@ -1,0 +1,102 @@
+<%- include("./partes/cabecera.ejs") %>
+
+<div class="row d-flex justify-content-center col-12">
+  <div class="m-5 col-10 text-center">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+          <img src="/imagenes/1.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="/imagenes/2.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="/imagenes/3.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <!-- <div class="carousel-item" data-bs-interval="3000">
+          <img src="/imagenes/9.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-12 text-center" style="background-image: url('https://i.ibb.co/t2nWYQH/annie-spratt-xz485-Eku8-O4-unsplash.jpg'); background-size: cover">
+      <div class="col-12" style="padding:40px">
+        <p class="fs-1">
+          Bienvenido a <img src="https://i.ibb.co/wKzmKWk/7421031693-d258024d-4cd1-43ff-8d96-8c0787b99699.png"  alt="...">
+        </p>
+        <p class="fs-3">Crea hoy una cuenta e inicia tu viaje a la experiencia médica online número 1 en Bolivia y Afganistán</p>
+
+          <a class="btn btn-success" href="<%=datos.http.get.registrarse%>">Crear cuenta</a>
+
+        <p class="fs-3">¿Ya tienes una cuenta? Inicia sesión para ver tus citas médicas</p>
+
+          <a href="<%=datos.http.get.rutaInformacion.inicio%>" class="btn btn-info">Iniciar Sesion</a>
+
+      </div>
+      <div class="col-12 row p-3">
+<div class="col-2">
+
+</div>
+        <div class="col-8 row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card">
+              <div class="d-flex justify-content-center">
+
+                <img src="/imagenes/5.png" class="" alt="..." width="128px" height="128px">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Videollamadas 1 a 1</h5>
+                <p class="card-text">Teleconferencias en tiempo real con personal de salud calificado de centros de salid de priemer nivel.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="d-flex justify-content-center">
+
+                <img src="/imagenes/6.png" class="" alt="..." width="128px" height="128px">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Busqueda por Especialidades</h5>
+                <p class="card-text">Busqueda de profesionales de la salud según sus especialidades y conociemientos en el area que necesites.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="d-flex justify-content-center">
+
+                <img src="/imagenes/7.png" class="" alt="..." width="128px" height="128px">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Agenda Citas</h5>
+                <p class="card-text">Agenda citas con los profesioales que requieras a la hora que sea más comoda para ambos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="d-flex justify-content-center">
+
+                <img src="/imagenes/8.png" class="" alt="..." width="128px" height="128px">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Seguimiento de Historial Médico</h5>
+                <p class="card-text">Manten un seguimiento de tu historial medico en tu cuenta, facilitando la revisión del mismo para los doctores.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("./partes/piePagina.ejs") %>

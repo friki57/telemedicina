@@ -1,0 +1,51 @@
+<%- include("./../../partes/cabecera.ejs") %>
+
+<!-- Doctor - Posta
+Fecha
+hora
+observacion fsdak fasdjl fkj
+estado -->
+  <script type="text/javascript">
+    var roomID = "<%= datos.cita._id %>"
+  </script>
+  <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+  <script src="/index.js" charset="utf-8" defer></script
+
+  <div class="d-flex justify-content-center" style="width:100%;">
+    <div class="cont" style="background:rgb(255, 255, 255)">
+      <h1 class="text-center" style="margin-buttom:20px; margin-top:20px;">Sala de video llamadas</h1>
+      <div class="card" style="height:90%; margin-bottom:40px;">
+        <div class="card-body">
+          <p>Nombre del Doctor:<%=datos.cita.doctor.nombres%> <%=datos.cita.doctor.apellidos%></p>
+          <% if(datos.cita.posta!=undefined){%>
+            <p>Posta:<%=datos.cita.posta.nombre%></p>
+            <p>Nombre Encargado Posta:<%=datos.cita.adminPosta.nombres%> <%=datos.cita.adminPosta.apellidos%></p>
+          <%}%>
+          <p class="card-text">Fecha y hora de la Cita: <%= datos.cita.fecha %>, <%= datos.cita.hora %><p>
+          <textarea name="observacion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px;" disabled="disabled">
+<%= datos.cita.observacion%>
+          </textarea>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" id="refresh" type="button">Actutualizar la página de llamada</button>
+          </div>
+          <script type="text/javascript">
+            let refresh = document.getElementById('refresh');
+              refresh.addEventListener('click', _ => {
+                          location.reload();
+              })
+
+          </script>
+        </div>
+
+        <div class="">
+          <div id="videoDiv">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<%- include("./../../partes/piePagina.ejs") %>
