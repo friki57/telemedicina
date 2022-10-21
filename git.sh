@@ -5,5 +5,5 @@
 git init
 git add .
 git commit -am "$1"
-git remote add http://github.com/friki57/telemedicina.git
+git remote add origin http://github.com/friki57/telemedicina.git
 git push origin master -f
