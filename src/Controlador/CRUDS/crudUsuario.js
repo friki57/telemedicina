@@ -16,8 +16,8 @@ function crud() {
     }
 
   this.ingresar = (datos, callback) => {
-    var docente = new Usuario(datos);
-    docente.save((error, res) => {
+    var usuario = new Usuario(datos);
+    usuario.save((error, res) => {
       if (!error) {
         callback(res);
       }
@@ -28,7 +28,7 @@ function crud() {
   }
 
   this.modificar = (id, datosnuevos, callback) => {
-    Usuario.update({ "_id": id }, datosnuevos, (error, res) => {
+    Usuario.updateOne({ "_id": id }, datosnuevos, (error, res) => {
       if (!error) {
         callback(res);
       }

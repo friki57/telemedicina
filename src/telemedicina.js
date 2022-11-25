@@ -1,3 +1,4 @@
+//Librerías
 const path = require("path");
 const express = require('express');
 const morgan = require('morgan');
@@ -10,7 +11,7 @@ const bodyParser = require('body-parser');
 var app = express();
 var MongoDBStore = require('connect-mongodb-session')(session);
 
-
+//Serividor Punto a Punto y Sockets
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const {ExpressPeerServer} = require('peer')
@@ -19,13 +20,14 @@ const peer = ExpressPeerServer(server , {
 });
 app.use('/peerjs', peer);
 
+//Autenticación
 require('./Modelo/Autenticacion/local.js')(passport);
 
+//Conexión sesiones BD
 var store = new MongoDBStore({
   uri: 'mongodb://localhost:27017/telemedicina',
   collection: 'mySessions'
 });
-
 app.use(session({
   key: 'session_cookie_name',
   secret: 'session_cookie_secret',
@@ -45,7 +47,8 @@ mongoose.connect('mongodb://localhost/telemedicina')
 .then(db => console.log('db connected'))
 .catch(err => console.log(err));
 
-var puerto = process.env.PORT || "4000";
+//Configuración Puertos y Protocolos
+var puerto = "4000";
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
@@ -69,7 +72,7 @@ app.use((req, res, next) => {
 var rutas = require('./Controlador/HTTP/index.js');
 app.use(rutas(passport));
 
-
+//Sockets conexión llamada
 io.on("connection" , (socket)=>{
   socket.on('newUser' , (id , room)=>{
     console.log("rooM:",room,"id:", id);
@@ -81,6 +84,7 @@ io.on("connection" , (socket)=>{
   })
 })
 
+//Inicio del Servidor
 //app.listen(puerto, '104.225.141.251', ()=>
 server.listen(puerto, ()=>
 {

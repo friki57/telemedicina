@@ -16,7 +16,8 @@ var json =
     registrarEspecialidad: "/Especialidad/Registrar",
     videollamada: "/VideoLlamada/Cita",
     registrarPaciente: "/Registrar/Paciente",
-    registrarse: "/Registrarse"
+    registrarse: "/Registrarse",
+    verificar: "/Verificar"
   },
   post:
   {
@@ -32,7 +33,8 @@ var json =
     añadirEspecialidad: "/Anadir/Especialidad",
     registrarEspecialidad: "/Especialidad/Registrar",
     registrarPaciente: "/Registrar/Paciente",
-    registrarse: "/Registrarse"
+    registrarse: "/Registrarse",
+    verificar: "/Verificar"
   },
   vista:
   {
@@ -40,6 +42,7 @@ var json =
     registrarHospital: "paginas/registros/registrarHospital",
     registrarDoctor: "paginas/registros/registrarDoctor",
     cuenta: "paginas/cuenta",
+    verificar: "paginas/verificar",
     verSolicitudesCitas: "paginas/citas/solicitudes",
     verHistorialCitas: "paginas/citas/historial",
     buscarEspecialidad: "paginas/buscar/buscarEspecialidad",

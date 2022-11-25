@@ -72,6 +72,30 @@ module.exports = (rutas, bd, ver, datos, http, passport)=>
         res.redirect("back");
     })
   });
+  rutas.post(http.post.verificar,(req,res)=>
+  {
+    console.log("llega verifcar:");
+    console.log(req.body);
+    bd.cruds.crudUsuario.buscarTodo((usuarios)=>
+    {
+      console.log(usuarios);
+      let encontrado = false;
+      for(var i = 0; i<usuarios.length; i++)
+      {
+        if(usuarios[i].hash == req.body.hash)
+        {
+          encontrado = true;
+        }
+      }
+      if(encontrado)
+      {
+        bd.cruds.crudUsuario.modificar(req.body.id, {hash: 0}, ()=>
+        {
+          res.redirect(http.get.cuenta)
+        })
+      }
+    })
+  });
   rutas.post(http.post.registrarPaciente,(req,res)=>
   {
     console.log("llega:");

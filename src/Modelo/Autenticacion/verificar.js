@@ -14,6 +14,25 @@ function obj()
       res.redirect(http.get.rutaCuenta.inicioSesion);
     }
   }
+  this.verificado = (req, res, next)=>{
+    console.log("hola")
+    if(req.isAuthenticated())
+    {
+      if(req.user.hash == 0)
+      {
+        console.log(req.app.locals.usuario)
+        return next();
+      }
+      else{
+        res.redirect(http.get.verificar)
+      }
+    }
+    else
+    {
+      req.flash("error","Primero es necesario iniciar sesion");
+      res.redirect(http.get.rutaCuenta.inicioSesion);
+    }
+  }
   this.nada = (req, res, next)=>{
       return next();
   }

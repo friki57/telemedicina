@@ -5,7 +5,7 @@ module.exports = (rutas, bd, ver, datos, http)=>
   {
     res.render("bienvenida", {datos})
   })
-  rutas.get(http.get.rutaInformacion.inicio,(req,res)=>
+  rutas.get(http.get.rutaInformacion.inicio, (req,res)=>
   {
     if(req.isAuthenticated())
     {
@@ -35,6 +35,11 @@ module.exports = (rutas, bd, ver, datos, http)=>
     datos.usuario = req.user;
     res.render(http.vista.registrarEspecialidad,{datos});
   });
+  rutas.get(http.get.verificar,(req,res)=>
+  {
+    datos.usuario = req.user;
+    res.render(http.vista.verificar,{datos});
+  });
   rutas.get(http.get.registrarDoctor,(req,res)=>
   {
     datos.usuario = req.user;
@@ -50,7 +55,7 @@ module.exports = (rutas, bd, ver, datos, http)=>
     datos.usuario = req.user;
     res.render(http.vista.registrarse,{datos});
   });
-  rutas.get(http.get.cuenta,(req,res)=>
+  rutas.get(http.get.cuenta, ver["verificado"],(req,res)=>
   {
     console.log("-----------------------------------");
     datos.usuario = req.user;

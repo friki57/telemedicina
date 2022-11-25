@@ -18,6 +18,7 @@ const usuarioSchema = Schema({
     telefono: String,
     idCentro: String,
     telefono: String,
+    hash: String,
     doctor: doctorSchema
 });
 module.exports = mongoose.model('usuario', usuarioSchema);

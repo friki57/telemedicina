@@ -8,10 +8,24 @@
           <img src="https://i.ibb.co/6FJbx63/patient.png" style="height: 200px;width: 200px;" class="card-img-top m-3" alt="...">
         </div>
         <div class="card-body text-center">
-          <h1 title="Cuenta Verificada."class="card-title"><%= datos.usuario.nombres %> <%= datos.usuario.apellidos %>
-            <img src="https://i.ibb.co/T0sF5Mk/verificado.png" title="Cuenta Verificada." width="28px" height="28px">
-          </h1>
+          <h1 class="card-title">Cuenta de: <%= datos.usuario.nombres %> <%= datos.usuario.apellidos %></h1>
+          <div class="alert alert-danger" role="alert">
+            <h3>Verifica tu cuenta.</h3>
+            <h5>Enviamos un código de verificación a tu correo: <%= datos.usuario.correo %>
+            </h5>
+            <form action="<%=datos.http.post.verificar%>" method="post">
+              <input type="hidden" id="acticuloId" name="id" value="<%= datos.usuario._id %>">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="hash" placeholder="Ingrese aquí el código"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Verificar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
             <% if(datos.usuario.tipo == "doctor") {%>
+                
               <p>Estas son tus especialidades registrardas:</p>
               <p><%= datos.espDoctortxt %></p>
               <form class="" action="<%=datos.http.post.añadirEspecialidad%>" method="post">

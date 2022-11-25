@@ -50,6 +50,10 @@ module.exports = (passport)=>
           {
             req.body.tipo = "Paciente"
             console.log("Usuario:",req.body);
+            console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")
+            const confirmacion = require('./../../Controlador/correo.js');
+            var hash = confirmacion(correo,bd,res);
+            req.body.hash = hash;
             bd.cruds.crudUsuario.ingresar(req.body,(resp)=>
             {
               return done(null, resp);
