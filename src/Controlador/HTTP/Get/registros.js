@@ -3,7 +3,15 @@ module.exports = (rutas, bd, ver, datos, http)=>
 {
   rutas.get("/",(req,res)=>
   {
-    res.render("bienvenida", {datos})
+    if (req.isAuthenticated()) {
+      datos.usuario = req.user;
+      res.redirect(datos.http.get.cuenta);
+    }
+    else {
+      datos.usuario = undefined;
+      res.render("bienvenida", { datos })
+    }
+    
   })
   rutas.get(http.get.rutaInformacion.inicio, (req,res)=>
   {
@@ -54,6 +62,16 @@ module.exports = (rutas, bd, ver, datos, http)=>
   {
     datos.usuario = req.user;
     res.render(http.vista.registrarse,{datos});
+  });
+  rutas.get(http.get.contra,(req,res)=>
+  {
+    datos.usuario = req.user;
+    res.render(http.vista.contra,{datos});
+  });
+  rutas.get(http.get.cambiarContra,(req,res)=>
+  {
+    datos.usuario = req.user;
+    res.render(http.vista.cambiarContra,{datos});
   });
   rutas.get(http.get.cuenta, ver["verificado"],(req,res)=>
   {

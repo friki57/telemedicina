@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 module.exports = (email,bd,id)=>
 {
-console.log("correooooooooooooooooooooooo")
+  console.log("correooooooooooooooooooooooo")
   const auth = {
     user: 'telemedicinaunifranz@gmail.com',
     pass: 'bgfnivhvouxpwpht'

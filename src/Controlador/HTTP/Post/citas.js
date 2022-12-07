@@ -31,4 +31,15 @@ module.exports = (rutas, bd, ver, datos, http, passport)=>
       res.redirect("back")
     })
   });
+  rutas.post(http.post.diagnostico, (req, res) => {
+    console.log("llega:");
+    console.log(req.body);
+    bd.cruds.crudCita.modificar(
+      req.body.idCita,
+      { diagnostico: req.body.diagnostico },
+      () => {
+        res.redirect(http.get.verHistorialCitasDoctor);
+      }
+    );
+  });
 }

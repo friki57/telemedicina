@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 const doctorSchema = Schema({
   estado: String,
   zoom: String,
-  idEspecialidad: [String]
+  idEspecialidad: [String],
+  codigoAsociacion: String
 });
 const usuarioSchema = Schema({
     nombres: String,

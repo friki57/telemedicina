@@ -9,7 +9,7 @@ estado -->
   <div class="d-flex justify-content-center">
     <div class="contenido" style="background:rgb(255, 255, 255)">
       <img src="https://i.ibb.co/dbmyXjc/historial-medico.png" class="rounded mx-auto d-block mt-3" styles=""width="200px" height="200px" alt="historial-medico" border="0"></a>
-      <h1 class="text-center" style="margin-buttom:20px; margin-top:20px;">Historial de Solicitudes</h1>
+      <h1 class="text-center" style="margin-bottom:20px; margin-top:20px;">Historial de Solicitudes</h1>
       <div class="row"style="padding:20px;">
         <!-- Repetir  -->
         <%for (var i = 0; i < datos.citas.length; i++) {%>
@@ -26,20 +26,31 @@ estado -->
                 <% if(datos.tipo == "posta"){ %>
                   <p>Nombre del Doctor: <%=datos.citas[i].doctor.nombres%> <%=datos.citas[i].doctor.apellidos%></p>
                   <% if(datos.citas[i].estado == "aceptada"){  %>
-                  <p>Telefono Doctor: <%=datos.citas[i].doctor.telefono%> <br><a class="" style="color:rgb(226, 226, 226); font-weight:bold;text-decoration: underline;"target="_blank" href="https://web.whatsapp.com/send?phone=<%=datos.citas[i].doctor.telefono%>">(Click aquí para enviar mensaje WhatsApp)</a></p>
-                  <% } %>
-                  <% } %>
-                  <% if(datos.tipo == "doctor"){ %>
-                    <% if(datos.citas[i].posta!=undefined){%>
+                    <p>Telefono Doctor: <%=datos.citas[i].doctor.telefono%> <br><a class="" style="color:rgb(226, 226, 226); font-weight:bold;text-decoration: underline;"target="_blank" href="https://web.whatsapp.com/send?phone=<%=datos.citas[i].doctor.telefono%>">(Click aquí para enviar mensaje WhatsApp)</a></p>
+                    <% } %>
+                    <% } %>
+                    <% if(datos.tipo == "doctor"){ %>
+                      <a href="<%= datos.http.get.paciente +'/'+ datos.citas[i].idAdminCentro%>">Ir al Perfil del Paciente.</a>
+                      <% if(datos.citas[i].posta!=undefined){%>
                     <p>Posta: <%=datos.citas[i].posta.nombre%></p>
                     <p>Nombre Encargado Posta: <%=datos.citas[i].adminPosta.nombres%> <%=datos.citas[i].adminPosta.apellidos%></p>
                     <p>Telefono Posta: <%=datos.citas[i].adminPosta.telefono%> <br><a class="" style="color:rgb(226, 226, 226);font-weight:bold;text-decoration: underline;"target="_blank" href="https://web.whatsapp.com/send?phone=<%=datos.citas[i].adminPosta.telefono%>">(Click aquí para enviar mensaje WhatsApp)</a></p>
                     <% } %>
                   <% } %>
                 <p class="card-text">Fecha y hora de la Cita: <%= datos.citas[i].fecha %>, <%= datos.citas[i].hora %><p>
-                <textarea name="observacion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px;" disabled="disabled">
-<%= datos.citas[i].observacion%>
-                </textarea>
+                  <p class="card-text">Temperatura: <%= datos.citas[i].temperatura %>
+                  </p>
+                  <p class="card-text">Presión arterial: <%= datos.citas[i].presion %>
+                  </p>
+                  <p class="card-text">Diagnostico antes de la llamada.</p>
+                    <textarea name="observacion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px;" disabled="disabled"><%= datos.citas[i].observacion%>
+                    </textarea>
+              <% if (datos.citas[i].estado=='aceptada' ) {%>
+                <p class="card-text">Diagnostico Realizado por el Doctor en la ultima llamada</p>
+                <textarea name="diagnostico" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                  style="height: 200px;" disabled="disabled"><%= datos.citas[i].diagnostico%>
+                              </textarea>
+                <% } %>
                 <%if (datos.citas[i].estado=="aceptada") {%>
                   <a class="btn btn-warning" style="margin-left:40%; margin-top:20px;" href="<%=datos.http.get.videollamada%>/<%= datos.citas[i]._id %>">Ir a la cita</a>
                 <% } %>

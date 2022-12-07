@@ -18,7 +18,7 @@ function obj()
     console.log("hola")
     if(req.isAuthenticated())
     {
-      if(req.user.hash == 0)
+      if(req.user.hash == 0 || req.user.tipo!="Paciente")
       {
         console.log(req.app.locals.usuario)
         return next();

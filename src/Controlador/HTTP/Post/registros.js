@@ -124,8 +124,8 @@ module.exports = (rutas, bd, ver, datos, http, passport)=>
   require('./../../../Modelo/Autenticacion/local.js');
   // this.rutas.post('/registrarPersonal',passport.authenticate("local-signup",
   // {
-  //   successRedirect: '/',
-  //   failureRedirect: '/Usuarios/Registrar',
+    //   successRedirect: '/',
+    //   failureRedirect: '/Usuarios/Registrar',
   //   failureFlash: true
   // }));
   rutas.post("/iniciarSesion",passport.authenticate("iniciar sesion",
@@ -163,5 +163,22 @@ module.exports = (rutas, bd, ver, datos, http, passport)=>
     {
       res.redirect(http.get.cuenta);
     }
+  });
+  rutas.post(http.post.contra,(req,res)=>
+  {
+    console.log("llega:");
+    console.log(req.body);
+    const confirmacion = require('../../correoContra.js');
+    confirmacion(req.body.correo, bd)
+    res.redirect(http.get.rutaInformacion.inicio);
+  });
+  rutas.post(http.post.cambiarContra,(req,res)=>
+  {
+    console.log("llega:");
+    console.log(req.body);
+    bd.cruds.crudUsuario.modificar(req.user._id,{contra:req.body.contra},()=>
+    {
+      res.redirect(http.get.rutaInformacion.inicio);
+    })
   });
 }

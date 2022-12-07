@@ -8,7 +8,7 @@
         <img src="https://i.ibb.co/gTWJMrL/register.png" class="w-100" alt="...">
       </div>
       <div class="col-md-6 p-4 ps-md-0">
-        <h1 style="margin-buton:20px; margin-top:20px;">Registro de Doctor/a</h1>
+        <h1 style="margin-bottom:20px; margin-top:20px;">Registro de Doctor/a</h1>
         <form method="post" action="<%=datos.http.post.registrarDoctor%>">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombres</label>
@@ -32,8 +32,12 @@
             <div id="emailHelp" class="form-text">No compartimos su correo electrónico con nadie.</div>
           </div>
           <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Código de Asociación</label>
+            <input name="codigoAsociacion" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
             <label for="" class="form-label">Horarios</label>
-            <select name="horarios" class="form-select" aria-label="Default select example">
+            <select name="horarios" class="form-select form-control" aria-label="Default select example">
               <option selected>Seleccione horarios</option>
               <option value="Horario Continuo 08:30 - 16:30">Horario Continuo 08:30 - 16:30</option>
               <option value="Horario Normal 08:30-12:30, 14:00-18:00">Horario Normal 08:30-12:30, 14:00-18:00</option>

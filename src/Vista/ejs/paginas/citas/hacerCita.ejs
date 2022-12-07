@@ -8,13 +8,13 @@
           <img src="https://i.ibb.co/kMJwvdk/correo-electronico.png" style="height: 200px;width: 200px;" class="card-img-top" alt="...">
         </div>
         <form class="form-signin" method="post" action="<%= datos.http.post.enviarSolicitud %>">
-          <h1 class="text-center" style="margin-buttom:40px;">Nueva Solicitud de Cita</h1>
+          <h1 class="text-center" style="margin-bottom:40px;">Nueva Solicitud de Cita</h1>
           <div class="card-body">
-            <h5 class="text-center" style="margin-buttom:40px;">Solicitud para Dr/a.: <%= datos.doctor.nombres %> <%= datos.doctor.apellidos %></h5>
+            <h5 class="text-center" style="margin-bottom:40px;">Solicitud para Dr/a.: <%= datos.doctor.nombres %> <%= datos.doctor.apellidos %></h5>
             <% if(datos.usuario.tipo=="Paciente"){%>
-              <h5 class="text-center" style="margin-buttom:40px;">Paciente: <%=  datos.usuario.nombres%> <%=datos.usuario.apellidos%></h5>
+              <h5 class="text-center" style="margin-bottom:40px;">Paciente: <%=  datos.usuario.nombres%> <%=datos.usuario.apellidos%></h5>
             <%}else{%>
-              <h5 class="text-center" style="margin-buttom:40px;">Centro de Salud Origen: <%=  datos.centro%></h5>
+              <h5 class="text-center" style="margin-bottom:40px;">Centro de Salud Origen: <%=  datos.centro%></h5>
             <%}%>
 
 
@@ -28,12 +28,38 @@
                 <label for="exampleFormControlInput1" class="form-label">Ingresar hora para la Cita</label>
                 <input type="time" class="form-control" id="exampleFormControlInput1" name="hora" required>
               </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Seleccione el nivel de Temperatura.</label>
+                <select name="temperatura" class="form-select form-control" aria-label="Default select example">
+                  <option value="Bajo: Inferior a 36.5 °C">Bajo: Inferior a 36.5 °C</option>
+                  <option value="Normal: 36.5 a 37.5 °C" selected>Normal: 36.5 a 37.5 °C</option>
+                  <option value="Alto: Superior a 37.5 °C">Alto: Superior a 37.5 °C</option>
+                  <option value="Hipotermia severa">Hipotermia severa</option>
+                  <option value="Insolación severa">Insolación severa</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Seleccione el nivel de Presión Arterial.</label>
+                <select name="presion" class="form-select form-control" aria-label="Default select example">
+                  <option value="Presión Arterial baja: Inferior a 90 HH mg">Presión Arterial baja: Inferior a 90 HH mg</option>
+                  <option value="Normal: Inferior a 120 HH mg" selected>Normal: Inferior a 120 HH MG</option>
+                  <option value="Elevado: de 120 a 129 HH mg">Elevado: de 120 a 129 HH mg</option>
+                  <option value="Hipertensión Nivel 1: de 130 a 139 HH mg">Hipertensión Nivel 1: de 130 a 139 HH mg</option>
+                  <option value="Hipertensión Nivel 2: de 140 a 180 HH mg">Hipertensión Nivel 2: de 140 a 180 HH mg</option>
+                  <option value="Crisis de Hipertensión: Superior a 180 HH mg">Crisis de Hipertensión: Superior a 180 HH mg</option>
+                </select>
+              </div>
               <% if(datos.usuario.tipo=="Paciente"){%>
-                <textarea name="observacion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px">
+                <textarea name="observacion" class="form-control" placeholder="Leave a comment here" id="textarea" style="height: 300px">
 Nombre: <%=  datos.usuario.nombres%> <%=datos.usuario.apellidos%>
 Caso:
 Fecha de nacimiento: <%= datos.usuario.fechaNac%>
+Género:
+Edad:
+Peso:
+Estatura:
 Observaciones:
+
                 </textarea>
                 <label for="floatingTextarea2">Ingrese sus síntomas y observaciones.</label>
               <%}else{%>
@@ -41,6 +67,10 @@ Observaciones:
 Nombre:
 Caso:
 Fecha de nacimiento:
+Género:
+Edad:
+Peso:
+Estatura:
 Observaciones:
                 </textarea>
                 <label for="floatingTextarea2">Ingresar los datos del paciente.</label>
@@ -57,5 +87,26 @@ Observaciones:
       </div>
     </div>
   </div>
+  <script>
+    function calcularEdad(fecha) {
+        var hoy = new Date();
+        var cumpleanos = new Date(fecha);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+          edad--;
+        }
+
+        return edad;
+      }
+      console.log("fecha:","<%= datos.usuario.fechaNac %>","Edad:", calcularEdad("<%= datos.usuario.fechaNac %>"))
+      var edad = calcularEdad("<%= datos.usuario.fechaNac %>")
+      var texto = document.getElementById("textarea").value;
+      var pos = texto.indexOf("Edad:")
+      texto = texto.slice(0,pos+5) + " "+edad+" años." + texto.slice(pos+5)
+      console.log(texto)
+      document.getElementById("textarea").value = texto
+  </script>
 
 <%- include("./../../partes/piePagina.ejs") %>

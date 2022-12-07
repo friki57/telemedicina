@@ -1,0 +1,29 @@
+<%- include("./../../partes/cabecera.ejs") %>
+
+
+    <div class="d-flex justify-content-center">
+        <div class="contenido" style="width:50%">
+            <div class="card mb-3">
+                <div class="d-flex justify-content-center">
+                    <img src="https://i.ibb.co/0MDD6Qj/correo-electronico.png" style="height: 200px;width: 200px;"
+                        class="card-img-top m-3" alt="...">
+                </div>
+                <div class="card-body text-center">
+                    <h1 title="Cuenta Verificada." class="card-title">
+                        Ingresa tu correo electrónico
+                    </h1>
+                    <p>Enviaremos a tu correo tu contraseña.</p>
+                    <form class="" action="<%=datos.http.post.contra%>" method="post">
+                        <div class="input-group mb-3">
+                            <input  name="correo" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                                aria-describedby="basic-addon2" required autofocus>
+                            <span class="input-group-text" id="basic-addon2">correo@proveedor.com</span>
+                        </div>
+                        <button type="submit" class="btn btn-success">Recibir mi antigua contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../../partes/piePagina.ejs") %>

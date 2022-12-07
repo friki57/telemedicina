@@ -31,6 +31,8 @@ estado -->
                   <p class="card-text">Origen Posta: <%= datos.citas[i].posta %><p>
                   <p class="card-text">Admin Posta: <%= datos.citas[i].adminPosta %><p>
                 <%}%>
+                <p class="card-text">Temperatura: <%= datos.citas[i].temperatura %></p>
+                <p class="card-text">Presión arterial: <%= datos.citas[i].presion %></p>
                 <textarea name="observacion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px;" disabled="disabled">
 <%= datos.citas[i].observacion%>
                 </textarea>

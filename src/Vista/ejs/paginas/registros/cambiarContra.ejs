@@ -1,0 +1,44 @@
+<%- include("./../../partes/cabecera.ejs") %>
+
+
+    <div class="d-flex justify-content-center">
+        <div class="contenido" style="width:50%">
+            <div class="card mb-3">
+                <div class="d-flex justify-content-center">
+                    <img src="https://i.ibb.co/0MDD6Qj/correo-electronico.png" style="height: 200px;width: 200px;"
+                        class="card-img-top m-3" alt="...">
+                </div>
+                <div class="card-body text-center">
+                    <h1 title="Cuenta Verificada." class="card-title">
+                        Cambio de contraseña.
+                    </h1>
+                    <form class="" action="<%=datos.http.post.cambiarContra%>" method="post">
+                        <label for="basic-url" class="form-label">Ingresa una nueva Contraseña</label>
+                        <div class="input-group mb-3">
+                            <input onkeyup="comprobar()" type="password" name="contra" class="form-control" id="correo1" aria-describedby="basic-addon3" autofocus required>
+                        </div>
+                        <label for="basic-url" class="form-label" >Confirmar nueva contraseña</label>
+                        <div class="input-group mb-3">
+                            <input onkeyup="comprobar()" type="password" name="correo2"class="form-control" id="correo2" aria-describedby="basic-addon3" required>
+                        </div>
+                        <button type="submit" disabled id="boton" class="btn btn-success">Recibir mi antigua contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var correo1=document.getElementById("correo1")
+        var correo2=document.getElementById("correo2")
+        var boton=document.getElementById("boton")
+        function comprobar()
+        {
+            console.log(correo1.value, correo2.value)
+            if(correo1.value==correo2.value)
+                boton.disabled=false
+            else
+                boton.disabled=true
+        }
+    </script>
+
+    <%- include("../../partes/piePagina.ejs") %>
